@@ -20,8 +20,8 @@
     }
   }
 
-  Game.prototype.addGreenies = function () {
-    for (var i = 0; i < 5; i++) {
+  Game.prototype.addGreenies = function (n) {
+    for (var i = 0; i < n; i++) {
       this.greenies.push(Asteroids.Greenie.prototype.randomGreenie(
         Asteroids.canvas.width, Asteroids.canvas.height
       ));
@@ -30,6 +30,7 @@
 
   Game.prototype.draw = function () {
     this.hitAsteroids();
+    this.consumedGreenies();
     for (var i = 0; i < this.asteroids.length; i++) {
       this.asteroids[i].draw(this.ctx);
       this.asteroids[i].x += this.asteroids[i].vx;
@@ -70,7 +71,7 @@
   }
 
   Game.prototype.checkCollisions = function(){
-    for(var i = 0; i <this.asteroids.length; i++){
+    for(var i = 0; i < this.asteroids.length; i++){
       if(this.asteroids[i].isCollidedWith(this.ship)){
         return true;
       }
@@ -96,18 +97,33 @@
       }
     })();
     if (pairs.length !== 0) {
-      this.asteroids.splice(pairs[0], 1);
-      this.bullets.splice(pairs[1], 1);
+      this.removeAsteroid(pairs[0]);
+      this.removeBullet(pairs[1]);
     }
   };
 
+  Game.prototype.consumedGreenies = function () {
+    for(var i = 0; i < this.greenies.length; i++){
+      if(this.greenies[i].isCollidedWith(this.ship)){
+        this.removeGreenie(i);
+        return;
+      }
+    }
+  }
+
   Game.prototype.removeAsteroid = function (index) {
     this.asteroids.splice(index, 1);
+    this.addAsteroids(1);
   };
 
   Game.prototype.removeBullet = function (index) {
     this.bullets.splice(index, 1);
   };
+
+  Game.prototype.removeGreenie = function (index) {
+    this.greenies.splice(index, 1);
+    this.addGreenies(1);
+  }
 
   Game.prototype.render = function () {
     var requestID = root.requestAnimationFrame(Game.prototype.render.bind(this));

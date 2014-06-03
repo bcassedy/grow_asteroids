@@ -7,7 +7,7 @@
   var game = new Asteroids.Game(ctx);
   Asteroids.game = game;
   game.addAsteroids(20);
-  game.addGreenies();
+  game.addGreenies(5);
   game.render();
 
 })(this);

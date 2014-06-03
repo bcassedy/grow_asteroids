@@ -15,6 +15,10 @@
       ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI , false);
       ctx.lineWidth = 2;
       ctx.strokeStyle = this.color;
+      if (this.fillStyle) {
+        ctx.fillStyle = this.fillStyle;
+        ctx.fill();
+      }
       ctx.stroke();
     }
 

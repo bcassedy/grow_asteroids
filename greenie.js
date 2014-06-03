@@ -14,6 +14,7 @@
     MovingObject.apply(this, arguments);
     this.COLOR = 'green';
     this.radius = 5;
+    this.fillStyle = 'green';
   }
 
   Greenie.inherits(MovingObject);

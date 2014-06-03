@@ -1,6 +1,7 @@
 (function(root) {
   var Asteroids = root.Asteroids = (root.Asteroids || {});
   var Ship = Asteroids.Ship = function () {
+    this.fillStyle = 'blue'
     Asteroids.MovingObject.apply(this, [root.Asteroids.canvas.width / 2, root.Asteroids.canvas.height/2, 0, 0, 10, '#0000ff']);
   }
 
