@@ -10,27 +10,23 @@
 
   var MovingObject = Asteroids.MovingObject;
 
-  var Asteroid = Asteroids.Asteroid = function () {
+  var Greenie = Asteroids.Greenie = function () {
     MovingObject.apply(this, arguments);
-    this.COLOR = "red";
-    this.radius = Asteroid.RADIUS;
+    this.COLOR = 'green';
+    this.radius = 5;
   }
 
-  Asteroid.inherits(MovingObject);
+  Greenie.inherits(MovingObject);
 
-  Asteroid.getRadius = function(){
-    return  40 * Math.random() + 10;
-  }
-
-  Asteroid.prototype.randomAsteroid = function (dimX, dimY) {
-    var r = Asteroid.getRadius();
-    return new Asteroid(
+  Greenie.prototype.randomGreenie = function (dimX, dimY) {
+    var r = 5
+    return new Greenie(
       (dimX - 2*r)* Math.random() + r,
       (dimY - 2*r) * Math.random() + r,
-      Math.random() - 0.5,
-      Math.random() - 0.5,
+      0,
+      0,
       r,
-      'red');
+      'green');
   }
 
 
