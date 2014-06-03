@@ -41,8 +41,8 @@
   }
 
   Game.prototype.friction = function() {
-    this.ship.vx *= 0.97;
-    this.ship.vy *= 0.97;
+    this.ship.vx *= 0.99;
+    this.ship.vy *= 0.99;
     for(var i = 0; i < this.asteroids.length ; i++){
       this.asteroids[i].vx += 5* (Math.random() - 0.5) / 60;
       this.asteroids[i].vy += 5* (Math.random() - 0.5) / 60;
@@ -60,7 +60,6 @@
   Game.prototype.checkCollisions = function(){
     for(var i = 0; i <this.asteroids.length; i++){
       if(this.asteroids[i].isCollidedWith(this.ship)){
-        // root.alert("Game Over man");
         return true;
       }
     }
@@ -99,27 +98,26 @@
   };
 
   Game.prototype.render = function () {
-
-      var requestID = root.requestAnimationFrame(Game.prototype.render.bind(this));
-      if (this.checkCollisions()) { root.cancelAnimationFrame(requestID)}
-      this.ctx.clearRect (0 ,0 ,this.DIM_X, this.DIM_Y );
-      this.draw();
+    var requestID = root.requestAnimationFrame(Game.prototype.render.bind(this));
+    if (this.checkCollisions()) { root.cancelAnimationFrame(requestID)}
+    this.ctx.clearRect (0, 0, this.DIM_X, this.DIM_Y);
+    this.draw();
   };
 
   Game.prototype.bindKeyHandlers = function () {
     var game = this;
     var ship = this.ship;
     key('up', function () {
-      ship.power([0, -0.5]);
+      ship.power([0, -0.6]);
     });
     key('down', function () {
-      ship.power([0, 0.5]);
+      ship.power([0, 0.6]);
     });
     key('left', function () {
-      ship.power([-0.5, 0]);
+      ship.power([-0.6, 0]);
     });
     key('right', function () {
-      ship.power([0.5, 0]);
+      ship.power([0.6, 0]);
     });
     key('space', function () {
       game.bullets.push(ship.fireBullet());

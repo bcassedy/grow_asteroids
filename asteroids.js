@@ -9,16 +9,4 @@
   game.addAsteroids(20);
   game.render();
 
-  // var asteroids = Asteroids.asteroids = new Array(1);
-  // asteroids[0] = new Asteroids.Asteroid.prototype.randomAsteroid(canvas.width,
-  //    canvas.height);
-
-  // function update_velocity(){
-//     vx =
-//   }
-
-
 })(this);
-
-// var game = new this.Asteroids.Game(ctx)
-// game.start();
