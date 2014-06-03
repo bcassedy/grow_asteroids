@@ -106,6 +106,7 @@
     for(var i = 0; i < this.greenies.length; i++){
       if(this.greenies[i].isCollidedWith(this.ship)){
         this.removeGreenie(i);
+        this.ship.r += 2;
         return;
       }
     }
