@@ -10,6 +10,7 @@
     this.ship = new Asteroids.Ship();
     this.bindKeyHandlers();
     this.bullets = [];
+    this.score = 0;
   }
 
   Game.prototype.addAsteroids = function(n){
@@ -29,6 +30,7 @@
   }
 
   Game.prototype.draw = function () {
+    this.scoreBoard();
     this.hitAsteroids();
     this.consumedGreenies();
     for (var i = 0; i < this.asteroids.length; i++) {
@@ -124,11 +126,20 @@
   Game.prototype.removeGreenie = function (index) {
     this.greenies.splice(index, 1);
     this.addGreenies(1);
+  };
+
+  Game.prototype.scoreBoard = function () {
+    var score = 'Score: ' + (this.ship.r * 10);
+    this.ctx.fillStyle = 'white';
+    this.ctx.font = '14pt Arial';
+    this.ctx.fillText(score, 20, 20);
   }
 
   Game.prototype.render = function () {
     var requestID = root.requestAnimationFrame(Game.prototype.render.bind(this));
-    if (this.checkCollisions()) { root.cancelAnimationFrame(requestID)}
+    if (this.checkCollisions() || this.ship.r < 7) {
+      root.cancelAnimationFrame(requestID)
+    }
     this.ctx.clearRect (0, 0, this.DIM_X, this.DIM_Y);
     this.draw();
   };

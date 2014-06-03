@@ -1,5 +1,5 @@
 (function(root) {
-  var Asteroids = root.Asteroids = (root.Asteroids || {})
+  var Asteroids = root.Asteroids = (root.Asteroids || {});
 
   var MovingObject = Asteroids.MovingObject = function(x, y, vx, vy, r, c) {
       this.x = x;

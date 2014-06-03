@@ -22,6 +22,7 @@
 
     var norm = Math.sqrt(Math.pow(this.vx, 2) + Math.pow(this.vy, 2))
     var speed = 30;
+    this.r -= 1;
     return new Asteroids.Bullet(this.x,
            this.y,
            this.vx * ( 1 + speed / norm ),
