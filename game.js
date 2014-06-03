@@ -4,6 +4,7 @@
   var Game = Asteroids.Game = function (ctx) {
     this.ctx = ctx;
     this.asteroids = [];
+    this.greenies = []
     this.DIM_X = Asteroids.canvas.width;
     this.DIM_Y = Asteroids.canvas.height;
     this.ship = new Asteroids.Ship();
@@ -19,6 +20,14 @@
     }
   }
 
+  Game.prototype.addGreenies = function () {
+    for (var i = 0; i < 5; i++) {
+      this.greenies.push(Asteroids.Greenie.prototype.randomGreenie(
+        Asteroids.canvas.width, Asteroids.canvas.height
+      ));
+    }
+  }
+
   Game.prototype.draw = function () {
     this.hitAsteroids();
     for (var i = 0; i < this.asteroids.length; i++) {
@@ -26,6 +35,9 @@
       this.asteroids[i].x += this.asteroids[i].vx;
       this.asteroids[i].y += this.asteroids[i].vy;
       this.boundaryCollision(this.asteroids[i]);
+    }
+    for (var i = 0; i< this.greenies.length; i++) {
+      this.greenies[i].draw(this.ctx);
     }
     for (var i = 0; i < this.bullets.length; i++) {
       this.bullets[i].draw(this.ctx);
@@ -44,8 +56,8 @@
     this.ship.vx *= 0.99;
     this.ship.vy *= 0.99;
     for(var i = 0; i < this.asteroids.length ; i++){
-      this.asteroids[i].vx += 5* (Math.random() - 0.5) / 60;
-      this.asteroids[i].vy += 5* (Math.random() - 0.5) / 60;
+      this.asteroids[i].vx += 5 * (Math.random() - 0.5) / 60;
+      this.asteroids[i].vy += 5 * (Math.random() - 0.5) / 60;
     }
   }
 

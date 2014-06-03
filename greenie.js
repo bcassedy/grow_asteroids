@@ -19,14 +19,15 @@
   Greenie.inherits(MovingObject);
 
   Greenie.prototype.randomGreenie = function (dimX, dimY) {
-    var r = 5
+    var r = 5;
     return new Greenie(
       (dimX - 2*r)* Math.random() + r,
       (dimY - 2*r) * Math.random() + r,
       0,
       0,
       r,
-      'green');
+      'green'
+    );
   }
 
 

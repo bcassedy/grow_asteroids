@@ -14,18 +14,18 @@
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI , false);
       ctx.lineWidth = 2;
-      ctx.strokeStyle = "#ff0000";
+      ctx.strokeStyle = this.color;
       ctx.stroke();
     }
 
     MovingObject.prototype.isCollidedWith = function (otherObject) {
       var distance = Math.sqrt(Math.pow((this.x - otherObject.x), 2) +
-          Math.pow((this.y - otherObject.y), 2));
-          if (distance < (this.r + otherObject.r)) {
-            return true;
-          } else {
-            return false;
-          }
+        Math.pow((this.y - otherObject.y), 2));
+      if (distance < (this.r + otherObject.r)) {
+        return true;
+      } else {
+        return false;
+      }
     };
 
 
