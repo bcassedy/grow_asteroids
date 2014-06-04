@@ -24,13 +24,19 @@
 
   Asteroid.prototype.randomAsteroid = function (dimX, dimY) {
     var r = Asteroid.getRadius();
-    return new Asteroid(
+    var asteroid = new Asteroid(
       (dimX - 2*r)* Math.random() + r,
       (dimY - 2*r) * Math.random() + r,
       Math.random() - 0.5,
       Math.random() - 0.5,
       r,
-      'red');
+      'red'
+    );
+    if (asteroid.isCollidedWith(Asteroids.game.ship)) {
+      return this.randomAsteroid(dimX, dimY);
+    } else {
+      return asteroid;
+    }
   }
 
 

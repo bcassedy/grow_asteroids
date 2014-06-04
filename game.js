@@ -13,6 +13,12 @@
     this.score = 0;
   }
 
+  Game.prototype.begin = function () {
+    Asteroids.game.addAsteroids(20);
+    Asteroids.game.addGreenies(5);
+    Asteroids.game.render();
+  }
+
   Game.prototype.addAsteroids = function(n){
     for( var i = 0; i < n; i++){
       this.asteroids.push(Asteroids.Asteroid.prototype.randomAsteroid(
@@ -137,8 +143,19 @@
 
   Game.prototype.render = function () {
     var requestID = root.requestAnimationFrame(Game.prototype.render.bind(this));
+    var that = this;
     if (this.checkCollisions() || this.ship.r < 7) {
       root.cancelAnimationFrame(requestID)
+      Asteroids.canvas.width = 100;
+      Asteroids.canvas.width = 800;
+      $('#game-over').removeClass('hidden');
+      $('body').on('keydown', function () {
+        that.ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
+        Asteroids.newGame();
+        $('body').off('keydown');
+        $('#game-over').addClass('hidden');
+      });
+      return;
     }
     this.ctx.clearRect (0, 0, this.DIM_X, this.DIM_Y);
     this.draw();
@@ -167,7 +184,4 @@
       }
     })
   };
-
-
-
 })(this)

@@ -1,0 +1,78 @@
+<html>
+<head>
+<script src="js/jquery.min.js"></script>
+<script src="moving_object.js"></script>
+<script src="asteroid.js"></script>
+<script src="ship.js"></script>
+<script src='keymaster.js'></script>
+<script src='bullet.js'></script>
+<script src='greenie.js'></script>
+<script src="game.js"></script>
+<style type='text/css' media='screen'>
+  #menu {
+    color: white;
+    font-size: 1em;
+    margin: auto;
+    border: 2px solid white;
+    position: absolute;
+    top: 225px;
+    left: 200px;
+    width: 400px;
+  }
+  #game-over {
+    color: white;
+    font-size: 1em;
+    margin: auto;
+    border: 2px solid white;
+    position: absolute;
+    top: 225px;
+    left: 200px;
+    width: 400px;
+  }
+  .hidden {
+    display: none;
+  }
+  #canvas-wrapper {
+    position: relative;
+  }
+</style>
+
+</head>
+
+<body>
+  <div id='canvas-wrapper'>
+  <canvas
+    id="canvas"
+    width=800 height=600
+    style="background-color: black">
+  </canvas>
+  <div id='menu'>
+    <p>Grow your bubble by consuming greenies. The game is over when you hit another bubble or your bubble gets too small.</p>
+
+    <p>Use the arrow keys to control your bubble and space to fire. Be careful, firing reduces your size!</p>
+
+    <p>Press any key to begin.</p>
+  </div>
+  <div class='hidden' id='game-over'>
+    <p>
+      Game Over.
+    </p>
+
+    <p>
+      Press any key to restart
+    </p>
+  </div>
+  </div>
+  <script src="asteroids.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('body').on('keydown', function (event) {
+        $('#menu').addClass('hidden');
+        Asteroids.newGame();
+        $('body').off('keydown');
+      });
+    });
+  </script>
+</body>
+
+</html>
